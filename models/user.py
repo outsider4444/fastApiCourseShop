@@ -1,5 +1,6 @@
 import sqlalchemy
 
+from db import metadata
 from models.enums import RoleType
 
 user = sqlalchemy.Table(
