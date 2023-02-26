@@ -7,11 +7,11 @@ app = FastAPI()
 app.include_router(api_router)
 
 
-@app.on_event("startup")
+@app.on_event("startup")  # Подключение к базе данных
 async def startup():
     await database.connect()
 
 
-@app.on_event("shutdown")
+@app.on_event("shutdown")  # Отключение от базы данных
 async def shutdown():
     await database.disconnect()
