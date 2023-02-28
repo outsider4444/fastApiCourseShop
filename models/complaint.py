@@ -3,6 +3,7 @@ import sqlalchemy
 from db import metadata
 from models.enums import State
 
+# Модель объявления
 complaint = sqlalchemy.Table(
     "complaints",
     metadata,

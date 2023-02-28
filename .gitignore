@@ -1,2 +1,3 @@
 migrations/versions/
 .idea
+venv/
