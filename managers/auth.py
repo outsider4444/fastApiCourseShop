@@ -8,7 +8,7 @@ from fastapi import HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from starlette.requests import Request
 
-from models import user
+from models import user, RoleType
 
 
 class AuthManager:
@@ -37,3 +37,21 @@ class CustomHTTPBearer(HTTPBearer):
             raise HTTPException(401, "Токен не существует")
         except jwt.InvalidTokenError:
             raise HTTPException(401, "Неверный токен")
+
+
+oauth2_scheme = CustomHTTPBearer()
+
+
+def is_complainer(request: Request):
+    if not request.state.user["role"] == RoleType.complainer:
+        raise HTTPException(403, "Forbidden")
+
+
+def is_approver(request: Request):
+    if not request.state.user["role"] == RoleType.approver:
+        raise HTTPException(403, "Forbidden")
+
+
+def is_admin(request: Request):
+    if not request.state.user["role"] == RoleType.admin:
+        raise HTTPException(403, "Forbidden")
