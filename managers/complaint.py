@@ -10,7 +10,7 @@ class ComplaintManager:
         if user["role"] == RoleType.complainer:
             q = q.where(complaint.c.complainer_id == user["id"])
         elif user["role"] == RoleType.approver:
-            q = q.where(complaint.c.state == State.pending)
+            q = q.where(complaint.c.status == State.pending)
         return await database.fetch_all(q)
 
     @staticmethod
@@ -22,3 +22,11 @@ class ComplaintManager:
     @staticmethod
     async def delete(complaint_id):
         await database.execute(complaint.delete().where(complaint.c.id == complaint_id))
+
+    @staticmethod
+    async def approve(id_):
+        await database.execute(complaint.update().where(complaint.c.id == id_).values(status=State.approved))
+
+    @staticmethod
+    async def reject(id_):
+        await database.execute(complaint.update().where(complaint.c.id == id_).values(status=State.rejected))

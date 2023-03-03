@@ -7,4 +7,4 @@ from schemas.base import BaseComplaint
 class ComplaintOut(BaseComplaint):
     id: int
     created_at: datetime
-    states: State
+    status: State
