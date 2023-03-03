@@ -3,6 +3,8 @@ from fastapi import APIRouter
 from managers.user import UserManager
 from schemas.request.user import UserRegisterIn, UserLoginIn
 
+
+# endpoints для авторизации и регистрации
 router = APIRouter(tags=["Auth"])
 
 

@@ -2,6 +2,7 @@ from db import database
 from models import complaint, RoleType, State
 
 
+# Класс отвечающий за функции связанные с объектами/товарами (CRUD)
 class ComplaintManager:
     @staticmethod
     async def get_complaints(user):
