@@ -6,8 +6,10 @@ from resources.routes import api_router
 
 
 origin = [
+    "http://localhost",
     "http://localhost:8000",
     "http://127.0.0.1",
+    "http://127.0.0.1:8000",
 ]
 
 
@@ -15,7 +17,7 @@ app = FastAPI()
 app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
-    allow_origin=True,
+    allow_origins="*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

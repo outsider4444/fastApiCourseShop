@@ -1,3 +1,5 @@
 migrations/versions/
-.idea
+.idea/
 venv/
+.env
+temp_files/*

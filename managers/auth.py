@@ -44,8 +44,9 @@ oauth2_scheme = CustomHTTPBearer()
 
 
 def is_complainer(request: Request):
-    if not request.state.user["role"] == RoleType.complainer:
-        raise HTTPException(403, "Forbidden")
+    if not request.state.user["role"] == RoleType.admin:
+        if not request.state.user["role"] == RoleType.complainer:
+            raise HTTPException(403, "Forbidden")
 
 
 def is_approver(request: Request):
